@@ -260,4 +260,64 @@ case $choice in
         ./main.sh
         ;;
 esac
+#backup function
+function back_up {
+    read -p "Are Sure You Want To Backup Your data (Y or N) if you backup this data everything will be backed up and you won't be able to run this program unless you go to online server or backup directory : " opt
+
+  if [ "$opt" == 'Y' ] || [ "$opt" == 'y' ]; then
+            echo -n "opening Backup";
+            load
+    ./move-to-directory.sh
+    else
+    echo $opt
+            echo -n "returning to home";
+            load
+    ./main.sh
+    fi
+}
+#app menu 
+echo -e "\n\n Choose What You Want To Do With Our App\n"
+echo "1) add New Student"
+echo "2) View All Students"
+echo "3) Edit Existing Student"
+echo "4) Delete  Student"
+echo "5) Save Student Emails Sorted in A.S.C."
+echo "6) View All Emails Only in A.S.C. Order"
+echo "7) Backup Your Data"
+echo "8) Exit The Program"
+#allow user to input the their choice with read function
+echo -e "\n"
+read -p "Enter Your choice Here: " choice
+echo -e "\n"
+#switch case to call functions according to user need
+case $choice in
+    1)
+        register
+        ;;
+    2)
+        view_student
+        ;;
+    3)
+        update_student
+        ;;
+    4)
+        delete_student
+        ;;
+    5)
+        email_save
+        ;;
+    6)
+      view_email
+      ;;
+    7)
+        back_up
+        ;;
+    8)
+        exit_main
+        ;;
+    *)
+        echo "Invalid choice Try again."
+        ./main.sh
+        ;;
+esac
 
